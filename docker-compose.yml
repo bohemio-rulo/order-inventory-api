@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_app
+    volumes:
+      - .:/var/www
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: laravel_db
+    environment:
+      MYSQL_DATABASE: order_inventory
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"

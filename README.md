@@ -20,3 +20,6 @@ business rules, async jobs and ERP-style integrations.
 - Services (business logic)
 - Repositories (data access)
 - Jobs (async processing)
+
+## Docker
+- docker compose up -d
