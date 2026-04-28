@@ -11,7 +11,7 @@ class OrderRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,20 @@ class OrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'items' => ['required', 'array', 'min:1'],
+            'items.*.product_id' => ['required', 'integer', 'exists:products,id'],
+            'items.*.qty' => ['required', 'integer', 'min:1'],
         ];
+    }
+
+    /**
+     * Transforma el request validado en un CreateOrderDTO
+     */
+    public function toDTO(): \App\DTOs\CreateOrderDTO
+    {
+        $items = collect($this->validated('items'))
+            ->map(fn($item) => new \App\DTOs\CreateOrderItemDTO($item['product_id'], $item['qty']))
+            ->all();
+        return new \App\DTOs\CreateOrderDTO($items);
     }
 }
