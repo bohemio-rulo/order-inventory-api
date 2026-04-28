@@ -15,12 +15,12 @@ class OrderController extends Controller
     )]
     #[OA\RequestBody(
         required: true,
-        content: new OA\JsonContent(ref: "#/components/schemas/Order") // reference to model
+        content: new OA\JsonContent(ref: "#/components/schemas/OrderDTO") // ahora referencia al DTO
     )]
     #[OA\Response(
         response: 201,
         description: 'Order created',
-        content: new OA\JsonContent(ref: "#/components/schemas/Order")
+        content: new OA\JsonContent(ref: "#/components/schemas/OrderDTO")
     )]
     public function store()
     {
