@@ -24,6 +24,8 @@ class OrderController extends Controller
     )]
     public function store()
     {
+        // Ejemplo: devuelve un recurso OrderResource (en una app real aquí se crearía la orden)
+        // return new \\App\\Http\\Resources\\OrderResource($order);
         return response()->json([
             'message' => 'Order created'
         ], 201);
