@@ -22,13 +22,18 @@ class OrderController extends Controller
         description: 'Order created',
         content: new OA\JsonContent(ref: "#/components/schemas/OrderDTO")
     )]
+    private \App\Services\Contracts\OrderServiceInterface $orderService;
+
+    public function __construct(\App\Services\Contracts\OrderServiceInterface $orderService)
+    {
+        $this->orderService = $orderService;
+    }
+
     public function store(\App\Http\Requests\OrderRequest $request)
     {
-        // Mapea el request a DTO limpio para el servicio
         $orderDto = $request->toDTO();
-
-        // Aquí lo ideal sería pasar a OrderService
-        // $order = $orderService->create($orderDto);
+        // Ahora utiliza el servicio por interface
+        // $order = $this->orderService->create($orderDto);
         // return new \\App\\Http\\Resources\\OrderResource($order);
 
         return response()->json([
