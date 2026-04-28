@@ -22,12 +22,18 @@ class OrderController extends Controller
         description: 'Order created',
         content: new OA\JsonContent(ref: "#/components/schemas/OrderDTO")
     )]
-    public function store()
+    public function store(\App\Http\Requests\OrderRequest $request)
     {
-        // Ejemplo: devuelve un recurso OrderResource (en una app real aquí se crearía la orden)
+        // Mapea el request a DTO limpio para el servicio
+        $orderDto = $request->toDTO();
+
+        // Aquí lo ideal sería pasar a OrderService
+        // $order = $orderService->create($orderDto);
         // return new \\App\\Http\\Resources\\OrderResource($order);
+
         return response()->json([
-            'message' => 'Order created'
+            'message' => 'Order created (falta implementar lógica de persistencia en Service)',
+            'dto' => $orderDto
         ], 201);
     }
 }
