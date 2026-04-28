@@ -7,7 +7,10 @@ use App\Models\Order;
 use App\Repositories\ProductRepository;
 use Illuminate\Support\Facades\DB;
 
-class OrderService
+use App\Services\Contracts\OrderServiceInterface;
+use App\DTOs\CreateOrderDTO;
+
+class OrderService implements OrderServiceInterface
 {
     /**
      * @param ProductRepository $productRepo
@@ -17,16 +20,9 @@ class OrderService
     ) {}
 
 
-    public function create(array $data): Order
+    public function create(CreateOrderDTO $dto): Order
     {
-        DB::transaction(function () use ($data, &$order) {
-            // validate stock
-            // create order
-            // disconnect stock
-        });
-
-        SyncOrderToErpJob::dispatch($order);
-
-        return $order;
+        // Aún sin implementación real; así se acepta el DTO
+        throw new \RuntimeException('No implementado: crear la orden usando el DTO limpio');
     }
 }

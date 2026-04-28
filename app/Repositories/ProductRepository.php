@@ -4,7 +4,9 @@ namespace App\Repositories;
 
 use App\Models\Product;
 
-class ProductRepository
+use App\Repositories\Contracts\ProductRepositoryInterface;
+
+class ProductRepository implements ProductRepositoryInterface
 {
     /**
      * @param int $id
