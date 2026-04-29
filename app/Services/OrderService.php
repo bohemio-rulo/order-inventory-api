@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Jobs\SyncOrderToErpJob;
 use App\Models\Order;
-use App\Repositories\ProductRepository;
+use App\Repositories\Contracts\ProductRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 
 use App\Services\Contracts\OrderServiceInterface;
@@ -16,7 +16,7 @@ class OrderService implements OrderServiceInterface
      * @param ProductRepository $productRepo
      */
     public function __construct(
-        private ProductRepository $productRepo
+        private ProductRepositoryInterface $productRepo
     ) {}
 
 
